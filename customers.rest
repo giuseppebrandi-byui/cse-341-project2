@@ -1,0 +1,50 @@
+// LOCALHOST
+### Get all customers
+GET http://localhost:3000/customers
+
+
+### Get customer by id
+GET http://localhost:3000/customers/678bf930b0f81a775e0d3f22
+
+
+### Create customer
+POST http://localhost:3000/customers HTTP/1.1
+content-type: application/json
+
+{
+  "name":"Giuseppe Brandi",
+  "age":52,
+  "username":"success",
+  "email":"joe@example.com",
+  "address":{ 
+    "street":"42 E 20th St",
+    "city":"New York",
+    "zip":10003
+  },
+  "phone":"555-123-4567",
+  "occupation":"Front End Developer"
+}
+
+
+### PUT customer
+PUT http://localhost:3000/customers/678bf930b0f81a775e0d3f22 HTTP/1.1
+content-type: application/json
+
+{
+  "name":"John Doe",
+  "age":30,
+  "username":"success",
+  "email":"johndoe",
+  "address":{ 
+    "street":"42 E 20th St",
+    "city":"Cityville",
+    "zip":"10003"
+  },
+  "phone":"555-123-4567",
+  "occupation":"Front End Developer"
+}
+
+
+### DELETE customer
+DELETE http://localhost:3000/customers/678c24f60a3ce56777fe3c73 HTTP/1.1
+
