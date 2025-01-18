@@ -4,4 +4,6 @@ router.get('/', (req, res) => {
   res.send('Hello World');
 });
 
+router.use('/products', require('./products'));
+
 module.exports = router;
