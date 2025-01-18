@@ -5,5 +5,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/products', require('./products'));
+router.use('/customers', require('./customers'));
 
 module.exports = router;
