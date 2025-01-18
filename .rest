@@ -1,0 +1,45 @@
+// LOCALHOST
+### Get all products
+GET http://localhost:3000/products
+
+
+### Get product by id
+GET http://localhost:3000/products/678c117c976f71d6231d2bac
+
+
+### Create product
+POST http://localhost:3000/products HTTP/1.1
+content-type: application/json
+
+{
+  "title":"Product 2",
+  "price":105,
+  "description":"Description product 2",
+  "category":"Accessories",
+  "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+  "ratings":{ 
+    "rate":3,
+    "count":25
+  }
+}
+
+
+### PUT product
+PUT http://localhost:3000/products/678c117c976f71d6231d2bac HTTP/1.1
+content-type: application/json
+
+{
+  "title":"Product 2",
+  "price":90,
+  "description":"Description product 2",
+  "category":"Accessories",
+  "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+  "ratings":{ 
+    "rate":3,
+    "count":25
+  }
+}
+
+
+### DELETE product
+DELETE http://localhost:3000/products/678c117c976f71d6231d2bac HTTP/1.1
