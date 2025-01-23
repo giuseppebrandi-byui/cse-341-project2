@@ -12,7 +12,7 @@ POST http://localhost:3000/products HTTP/1.1
 content-type: application/json
 
 {
-  "title":"Product 3",
+  "title":"Product 4",
   "price":"105.35",
   "description":"Description product 2",
   "category":"Men clothing",

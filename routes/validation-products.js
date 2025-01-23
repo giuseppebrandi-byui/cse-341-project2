@@ -11,7 +11,7 @@ const productValidationRules = () => {
 
     body('category').trim().escape().notEmpty().isLength({ min: 3 }).not().isNumeric().withMessage('Please provide a product name.'),
 
-    body('image').trim().notEmpty().escape().withMessage("Please provide a link for the product image (ex. https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg)"),
+    body('image').trim().notEmpty().withMessage("Please provide a link for the product image (ex. https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg)"),
 
     body('rating').trim().escape().notEmpty().isLength({ min: 1, max: 1 }).isInt({min: 1, max: 5}).withMessage('Please provide a number between 1 and 5.'),
 
