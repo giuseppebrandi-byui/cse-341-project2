@@ -12,8 +12,8 @@ POST http://localhost:3000/customers HTTP/1.1
 content-type: application/json
 
 {
-  "name":"Giuseppe Brandi",
-  "age":52,
+  "name":"Veria Brandi",
+  "age":"50",
   "username":"joe@example.com",
   "email":"joe@example.com",
   "address":{ 
@@ -27,24 +27,24 @@ content-type: application/json
 
 
 ### PUT customer
-PUT http://localhost:3000/customers/67920d089062ab64e87e6899 HTTP/1.1
+PUT http://localhost:3000/customers/67923bb10b9dc03904c157c6 HTTP/1.1
 content-type: application/json
 
 {
-  "name":"Giuseppe Brandi",
-  "age":51,
+  "name":"Veria Brandi",
+  "age":"50",
   "username":"joe@example.com",
   "email":"joe@example.com",
   "address":{ 
     "street":"42 E 20th St",
-    "city":"New York",
+    "city":"Chicago",
     "zip":"10003"
   },
-  "phone":"05554565655",
+  "phone":"5551234567",
   "occupation":"Front End Developer"
 }
 
 
 ### DELETE customer
-DELETE http://localhost:3000/customers/67920d089062ab64e87e6899 HTTP/1.1
+DELETE http://localhost:3000/customers/67923bb10b9dc03904c157c6 HTTP/1.1
 

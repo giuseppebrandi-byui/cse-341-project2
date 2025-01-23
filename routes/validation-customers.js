@@ -2,26 +2,34 @@ const { body, validationResult } = require('express-validator')
 const customerValidationRules = () => {
   return [
     
-    body('name').trim().escape().notEmpty().isLength({ min: 3 }).withMessage('Please provide a full name.'),
-    body('name').matches(/^[A-Za-z\s]+$/).withMessage("Numbers and symbols are not allowed."),
+    body('name').trim().notEmpty().isLength({ min: 3 }).withMessage({ "message": 'Please provide a full name.' }),
+    body('name').matches(/^[A-Za-z\s]+$/).withMessage({ "message": "Numbers and symbols are not allowed." }),
 
-    body('age').trim().escape().notEmpty().isNumeric().withMessage('Please provide a number'),
-    body('age').isLength({ min: 2, max: 3 }).isInt({ min: 18, max: 200 }).withMessage('Please provide your age (must be 18 years or older).'),
+    body('age').trim().notEmpty().isNumeric().withMessage({ "message": 'Please provide a number' }),
+    body('age').isLength({ min: 2, max: 3 }).isInt({ min: 18, max: 200 }).withMessage({ "message": 'Please provide your age (must be 18 years or older).' }),
 
-    body('username').isEmail().normalizeEmail({ gmail_remove_dots: true }).withMessage('Please use your email address.'),
+    body('username').isEmail().normalizeEmail({ gmail_remove_dots: true }).withMessage({ "message": 'Please use your email address.' }),
 
-    body('email').isEmail().normalizeEmail({ gmail_remove_dots: true }).withMessage('Please enter a valid email address.'),
+    body('email').isEmail().normalizeEmail({ gmail_remove_dots: true }).withMessage({ "message": 'Please enter a valid email address.' }),
 
-    body('address.street').trim().escape().notEmpty().isLength({ min: 5 }).withMessage('Please provide a street name.'),
-    body('address.city').trim().escape().notEmpty().isLength({ min: 2 }).withMessage('Please provide a city name.'),
-    body('address.zip').trim().escape().notEmpty().isLength({ min: 5 }).withMessage('Please provide a zip code'),
+    body('address.street').trim().notEmpty().isLength({ min: 5 }).withMessage({ "message": 'Please provide a street name.' }),
+    body('address.city').trim().notEmpty().isLength({ min: 2 }).withMessage({ "message": 'Please provide a city name.' }),
+    body('address.zip').trim().notEmpty().isLength({ min: 5 }).withMessage({ "message": 'Please provide a zip code' }),
 
-    body('phone').trim().escape().notEmpty().isNumeric().withMessage('Phone number can only contain numbers'),
-    body('phone').isInt({ allow_leading_zeroes: true }).isLength({ min: 10, max: 15 }).withMessage('Phone number must be between 10 and 15 digits'),
+    body('phone').trim().notEmpty().isNumeric().withMessage({ "message": 'Phone number can only contain numbers' }),
+    body('phone').isInt({ allow_leading_zeroes: true }).isLength({ min: 10, max: 15 }).withMessage({ "message": 'Phone number must be between 10 and 15 digits' }),
 
-    body('occupation').trim().escape().notEmpty().isLength({ min: 3 }).withMessage('Please enter occupation.')
+    body('occupation').trim().notEmpty().isLength({ min: 3 }).withMessage({ "message": 'Please enter occupation.' })
   ]
 }
+
+/*{
+  "error": [
+    {
+      "message": "Please provide a product name."
+    }
+  ]
+}*/
 
 const validate = (req, res, next) => {
   const errors = validationResult(req)
@@ -29,10 +37,14 @@ const validate = (req, res, next) => {
     return next()
   }
   const extractedErrors = []
-  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
+  errors.array().map(err => {
+    if (err.msg.message) { 
+      extractedErrors.push({'message' : err.msg.message })
+    }
+  })
 
-  return res.status(422).json({
-    errors: extractedErrors,
+  return res.status(400).json({
+    error: extractedErrors,
   })
 }
 

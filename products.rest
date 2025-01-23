@@ -12,26 +12,26 @@ POST http://localhost:3000/products HTTP/1.1
 content-type: application/json
 
 {
-  "title":"Product 4",
-  "price":"105.35",
-  "description":"Description product 2",
-  "category":"Men clothing",
+  "title":"",
+  "price":"90.00",
+  "description":"Description product 5",
+  "category":"Women clothing",
   "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   "rating":5
 }
 
 
 ### PUT product
-PUT http://localhost:3000/products/67920efe9062ab64e87e689a HTTP/1.1
+PUT http://localhost:3000/products/679228e0b258ce22ddf2088b HTTP/1.1
 content-type: application/json
 
 {
-  "title":"Product 3",
-  "price":"105.50",
-  "description":"Description product 3",
-  "category":"Men clothing",
+  "title":"",
+  "price":"90.50",
+  "description":"Description product 5",
+  "category":"Men's great clothing",
   "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-  "rating":4
+  "rating":3
 }
 
 
