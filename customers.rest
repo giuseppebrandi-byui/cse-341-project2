@@ -13,7 +13,7 @@ content-type: application/json
 
 {
   "name":"Veria Brandi",
-  "age":"50",
+  "age":30,
   "username":"joe@example.com",
   "email":"joe@example.com",
   "address":{ 
@@ -27,17 +27,17 @@ content-type: application/json
 
 
 ### PUT customer
-PUT http://localhost:3000/customers/67923bb10b9dc03904c157c6 HTTP/1.1
+PUT http://localhost:3000/customers/779250de0b9dc03904c157c7 HTTP/1.1
 content-type: application/json
 
 {
-  "name":"Veria Brandi",
-  "age":"50",
+  "name":"Vera Brandi",
+  "age":32,
   "username":"joe@example.com",
   "email":"joe@example.com",
   "address":{ 
     "street":"42 E 20th St",
-    "city":"Chicago",
+    "city":"New York",
     "zip":"10003"
   },
   "phone":"5551234567",
@@ -46,5 +46,5 @@ content-type: application/json
 
 
 ### DELETE customer
-DELETE http://localhost:3000/customers/67923bb10b9dc03904c157c6 HTTP/1.1
+DELETE http://localhost:3000/customers/67923b709d07b67cff05ba24 HTTP/1.1
 

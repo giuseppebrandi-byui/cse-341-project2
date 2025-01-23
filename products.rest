@@ -4,7 +4,7 @@ GET http://localhost:3000/products
 
 
 ### Get product by id
-GET http://localhost:3000/products/678f4cbbb0f81a775e0f57c5
+GET http://localhost:3000/products/68f4cbbb0f81a775e0f57b2
 
 
 ### Create product
@@ -12,29 +12,29 @@ POST http://localhost:3000/products HTTP/1.1
 content-type: application/json
 
 {
-  "title":"",
-  "price":"90.00",
-  "description":"Description product 5",
-  "category":"Women clothing",
+  "title":"Product Title",
+  "price":80.55,
+  "description":"Description",
+  "category":"Mix",
   "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   "rating":5
 }
 
 
 ### PUT product
-PUT http://localhost:3000/products/679228e0b258ce22ddf2088b HTTP/1.1
+PUT http://localhost:3000/products/67925724f55d4fb9d669fc4b HTTP/1.1
 content-type: application/json
 
 {
-  "title":"",
+  "title":"Product Title",
   "price":"90.50",
   "description":"Description product 5",
   "category":"Men's great clothing",
   "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-  "rating":3
+  "rating":5
 }
 
 
 ### DELETE product
-DELETE http://localhost:3000/products/67920efe9062ab64e87e689a HTTP/1.1
+DELETE http://localhost:3000/products/67925519a5d7e73261cb8ed8 HTTP/1.1
 

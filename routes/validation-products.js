@@ -4,11 +4,11 @@ const productValidationRules = () => {
     
     body('title').trim().notEmpty().isLength({ min: 3 }).withMessage({"message": 'Please provide a product name.'}),
 
-    body('price').trim().notEmpty().isLength({ min: 2 }).isFloat().withMessage({ "message": 'Please provide product price.' }),
+    body('price').trim().notEmpty().isFloat().isLength({ min: 2 }).withMessage({ "message": 'Please provide product price.' }),
 
     body('description').trim().notEmpty().isLength({ min: 5 }).withMessage({ "message": 'Please provide a product description.' }),
 
-    body('category').trim().notEmpty().isLength({ min: 3 }).not().isNumeric().withMessage({"message":'Please provide a product name.'}),
+    body('category').trim().notEmpty().isLength({ min: 3 }).withMessage({"message":'Please provide a product category.'}),
 
     body('image').trim().notEmpty().withMessage({ "message": "Please provide a link for the product image (ex. https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg)" }),
 

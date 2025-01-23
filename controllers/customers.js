@@ -63,11 +63,11 @@ const createCustomer = async (req, res, next) => {
         'added customer': customer,
        });
     } else {
-      next(createError(500, 'Some error occurred while creating the customer' + error.toString()));
+      next(createError(500, 'Some error occurred while creating the customer'));
       return;
     }
   } catch (error) { 
-    next(createError(500, 'Soemething went wrong. Try later.' + error.toString()));
+    next(createError(500, 'Soemething went wrong. Try later.'));
   }
 }
 
@@ -98,11 +98,11 @@ const updateCustomer = async (req, res, next) => {
         'Updated Customer: ': customer
       });
     } else {
-      next(createError(500, 'Sorry no customer with that id' + error.toString()));
+      next(createError(500, 'Sorry no customer with that id'));
       return;
     }
   } catch (error) { 
-    next(createError(500, 'Something went wrong while updating the customer' + error.toString()));
+    next(createError(500, 'Something went wrong while updating the customer. Please check id.'));
   }
 }
 
@@ -123,7 +123,7 @@ const deleteCustomer = async (req, res, next) => {
       return;
     };
   } catch (error) { 
-    next(createError(500, 'Something went wrong while deleting teh customer.') + error.toString());
+    next(createError(500, 'Something went wrong while deleting teh customer.'));
   }
 }
 

@@ -60,7 +60,7 @@ const createProduct = async (req, res, next) => {
       return;
     }
   } catch (error) { 
-    next(createError(500, 'Some error occurred while creating the product. Try again later.' +  error.toString()));
+    next(createError(500, 'Some error occurred while creating the product. Try again later.'));
   }
 };
 
@@ -90,7 +90,7 @@ const updateProduct = async (req, res, next) => {
       return;
     }
   } catch (error) { 
-    next(createError(500, 'Some error occurred while updating the product. Try again later.' +  error.toString()));
+    next(createError(500, 'Some error occurred while updating the product. Please check id.'));
   }
 }
 
@@ -111,7 +111,7 @@ const deleteProduct = async (req, res, next) => {
       return;
     };
   } catch (error) { 
-    next(createError(500, 'Some error occurred while deleting the product. Try again later.' +  error.toString()));
+    next(createError(500, 'Some error occurred while deleting the product. Try again later.'));
   }
 }
 
