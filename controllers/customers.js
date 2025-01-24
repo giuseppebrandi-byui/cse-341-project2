@@ -63,7 +63,7 @@ const createCustomer = async (req, res, next) => {
         'added customer': customer,
        });
     } else {
-      next(createError(500, 'Some error occurred while creating the customer'));
+      next(createError(400, 'Some error occurred while creating the customer'));
       return;
     }
   } catch (error) { 
@@ -98,7 +98,7 @@ const updateCustomer = async (req, res, next) => {
         'Updated Customer: ': customer
       });
     } else {
-      next(createError(500, 'Sorry no customer with that id'));
+      next(createError(400, 'Sorry no customer with that id'));
       return;
     }
   } catch (error) { 
@@ -119,11 +119,11 @@ const deleteCustomer = async (req, res, next) => {
         'Message: ': 'The customer has been deleted successfully.',
       });
     } else {
-      next(createError(500, 'Sorry no customer with that id.') + error.toString());
+      next(createError(400, 'Sorry no customer with that id.'));
       return;
     };
   } catch (error) { 
-    next(createError(500, 'Something went wrong while deleting teh customer.'));
+    next(createError(500, 'Something went wrong while deleting the customer.'));
   }
 }
 

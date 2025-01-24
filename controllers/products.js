@@ -56,7 +56,7 @@ const createProduct = async (req, res, next) => {
         'added product: ' : product,
       });
     } else {
-      next(createError(500, 'Some error occurred while creating the product. Try again later.'));
+      next(createError(400, 'Some error occurred while creating the product. Try again later.'));
       return;
     }
   } catch (error) { 
@@ -86,7 +86,7 @@ const updateProduct = async (req, res, next) => {
         'Updated Product: ': product,
       });
     } else {
-      next(createError(500, 'Sorry no product with that id'));
+      next(createError(400, 'Sorry no product with that id'));
       return;
     }
   } catch (error) { 
@@ -107,7 +107,7 @@ const deleteProduct = async (req, res, next) => {
         'Message: ': 'The product has been deleted successfully.',
       });
     } else {
-      next(createError(500, 'Sorry no product with that id'));
+      next(createError(400, 'Sorry no product with that id'));
       return;
     };
   } catch (error) { 
