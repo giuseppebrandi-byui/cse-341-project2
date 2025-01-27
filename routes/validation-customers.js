@@ -23,14 +23,6 @@ const customerValidationRules = () => {
   ]
 }
 
-/*{
-  "error": [
-    {
-      "message": "Please provide a product name."
-    }
-  ]
-}*/
-
 const validate = (req, res, next) => {
   const errors = validationResult(req)
   if (errors.isEmpty()) {
