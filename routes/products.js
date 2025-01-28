@@ -8,9 +8,9 @@ router.get('/', productsController.getAll);
 
 router.get('/:id', productsController.getSingle);
 
-router.post('/', productValidationRules(), validate, isAuthenticated, productsController.createProduct);
+router.post('/', isAuthenticated, productValidationRules(), validate, productsController.createProduct);
 
-router.put('/:id', productValidationRules(), validate, isAuthenticated, productsController.updateProduct);
+router.put('/:id', isAuthenticated, productValidationRules(), validate, productsController.updateProduct);
 
 router.delete('/:id', isAuthenticated, productsController.deleteProduct);
 

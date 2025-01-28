@@ -8,8 +8,8 @@ const session = require('express-session');
 const GitHubStrategy = require('passport-github2').Strategy;
 const cors = require('cors');
 
-const app = express();
 const port = process.env.PORT || 3000;
+const app = express();
 
 app.use(bodyParser.json());
 app.use(session({
@@ -24,7 +24,7 @@ app.use(passport.session());
 // Allow passport to use "express-session"
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Z-Key');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Z-Key, Author');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   next();
 });
@@ -38,9 +38,9 @@ passport.use(new GitHubStrategy({
   callbackURL: process.env.CALLBACK_URL
 },
   function (accessToken, refreshToken, profile, done) { 
-    User.findOrCreate({githubId: profile.id}, function(err, user) {
+    // User.findOrCreate({githubId: profile.id}, function(err, user) {
     return done(null, profile)
-    })
+    // })
   }
 ));
 

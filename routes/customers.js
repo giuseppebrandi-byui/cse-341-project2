@@ -8,9 +8,9 @@ router.get('/', customersController.getAll);
 
 router.get('/:id', customersController.getSingle);
 
-router.post('/', customerValidationRules(), validate, isAuthenticated, customersController.createCustomer);
+router.post('/', isAuthenticated, customerValidationRules(), validate, customersController.createCustomer);
 
-router.put('/:id', customerValidationRules(), validate, isAuthenticated, customersController.updateCustomer);
+router.put('/:id', isAuthenticated, customerValidationRules(), validate, customersController.updateCustomer);
 
 router.delete('/:id', isAuthenticated, customersController.deleteCustomer);
 
