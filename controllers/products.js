@@ -40,6 +40,16 @@ const getSingle = async (req, res, next) => {
 }
 
 const createProduct = async (req, res, next) => {
+   res.setHeader('Content-Type', 'application/json')
+  /*  #swagger.tags = ['Product']
+      #swagger.description = 'Endpoint to add a Product.' */
+
+  /*  #swagger.parameters['obj'] = {
+          in: 'body',
+          description: 'Product information.',
+          required: true,
+          schema: { $ref: "#/definitions/CreateProduct" }
+  } */
   try {
     const product = {
       title: req.body.title,
@@ -52,15 +62,18 @@ const createProduct = async (req, res, next) => {
     const response = await mongodb.getDatabase().db().collection('products').insertOne(product);
     res.setHeader('Content-Type', 'application/json');
     if (response.acknowledged) {
+      // #swagger.responses[202] = { 'message: ': 'A new product was added successfully.','added product: ' : 'product'}
       res.status(202).json({
         'message: ': 'A new product was added successfully.',
         'added product: ' : product,
       });
     } else {
+      // #swagger.responses[400] =  'Some error occurred while creating the product.Try again later.'
       next(createError(400, 'Some error occurred while creating the product. Try again later.'));
       return;
     }
   } catch (error) { 
+    // #swagger.responses[500] =  'Some error occurred while creating the product.Try again later.'
     next(createError(500, 'Some error occurred while creating the product. Try again later.'));
   }
 };

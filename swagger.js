@@ -31,7 +31,23 @@ const doc = {
         },
         $phone: '55566677799900',
         $occupation: 'Front End Developer'
-      }
+     },
+     Product: {
+       title: 'Product Name',
+       price: '10.55',
+       description: 'Product Description',
+       category: 'Specify a category',
+       image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+       rating: '5'
+     },
+     CreateProduct: {
+       $title: 'Product Name',
+       $price: '10.55',
+       $description: 'Product Description',
+       $category: 'Specify a category',
+       $image: 'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+       $rating: '5'
+     }
     },
   host: 'localhost:3000',
   schemes: ['http', 'https']

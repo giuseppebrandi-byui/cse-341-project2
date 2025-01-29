@@ -57,48 +57,38 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to add a Product.",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Product information.",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "category": {
-                  "example": "any"
-                },
-                "image": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/CreateProduct"
             }
           }
         ],
         "responses": {
           "202": {
-            "description": "Accepted"
+            "description": "Accepted",
+            "message: ": "A new product was added successfully.",
+            "added product: ": "product"
           },
           "400": {
             "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -239,9 +229,7 @@
             "added customer": "customer"
           },
           "400": {
-            "description": "Bad Request",
-            "message": "A new customer has been added to the database",
-            "added customer": "customer"
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
@@ -453,6 +441,72 @@
         "address",
         "phone",
         "occupation"
+      ]
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Product Name"
+        },
+        "price": {
+          "type": "string",
+          "example": "10.55"
+        },
+        "description": {
+          "type": "string",
+          "example": "Product Description"
+        },
+        "category": {
+          "type": "string",
+          "example": "Specify a category"
+        },
+        "image": {
+          "type": "string",
+          "example": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+        },
+        "rating": {
+          "type": "string",
+          "example": "5"
+        }
+      }
+    },
+    "CreateProduct": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Product Name"
+        },
+        "price": {
+          "type": "string",
+          "example": "10.55"
+        },
+        "description": {
+          "type": "string",
+          "example": "Product Description"
+        },
+        "category": {
+          "type": "string",
+          "example": "Specify a category"
+        },
+        "image": {
+          "type": "string",
+          "example": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+        },
+        "rating": {
+          "type": "string",
+          "example": "5"
+        }
+      },
+      "required": [
+        "title",
+        "price",
+        "description",
+        "category",
+        "image",
+        "rating"
       ]
     }
   }

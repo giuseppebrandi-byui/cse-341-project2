@@ -76,12 +76,13 @@ const createCustomer = async (req, res, next) => {
         'added customer': customer,
        });
     } else {
-      // #swagger.responses[400] = { 'message': 'A new customer has been added to the database','added customer': 'customer' }
+      // #swagger.responses[400] =  'Some error occurred while creating the customer.'
       next(createError(400, 'Some error occurred while creating the customer'));
       return;
     }
   } catch (error) { 
-    next(createError(500, 'Soemething went wrong. Try later.'));
+    // #swagger.responses[400] =  'Something went wrong. Try later.'
+    next(createError(500, 'Something went wrong. Try later.'));
   }
 }
 
@@ -144,3 +145,7 @@ const deleteCustomer = async (req, res, next) => {
 }
 
 module.exports = { getAll, getSingle, createCustomer, updateCustomer, deleteCustomer };
+
+// Swagger comments for each status code
+// Swagger parameters for GET, PUT, and DELETE
+// Add Headers in Products and Swagger comments and swagger paramets for GET, PUT, and DELETE
