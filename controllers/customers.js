@@ -90,6 +90,7 @@ const updateCustomer = async (req, res, next) => {
   res.setHeader('Content-Type', 'application/json')
   try {
     if (!(req.params.id && req.params.id.length === 24)) {
+      // #swagger.responses[400] =  'Please enter a valid id with a string of 24 hex characters!'
       next(createError(400, 'Please enter a valid id with a string of 24 hex characters!'));
       return;
     }
