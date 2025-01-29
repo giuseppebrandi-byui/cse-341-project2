@@ -42,6 +42,16 @@ const getSingle = async (req, res, next) => {
 }
 
 const createCustomer = async (req, res, next) => { 
+  res.setHeader('Content-Type', 'application/xml')
+  /*  #swagger.tags = ['Customer']
+      #swagger.description = 'Endpoint to add a Customer.' */
+
+  /*  #swagger.parameters['obj'] = {
+          in: 'body',
+          description: 'Customer information.',
+          required: true,
+          schema: { $ref: "#/definitions/CreateCustomer" }
+  } */
   try {
     const customer = {
       name: req.body.name,
@@ -58,6 +68,7 @@ const createCustomer = async (req, res, next) => {
     };
     const response = await mongodb.getDatabase().db().collection('customers').insertOne(customer);
     if (response.acknowledged) {
+       // #swagger.responses[202] = { 'message': 'A new customer has been added to the database','added customer': 'customer' }
       res.status(202).json({
         'message': 'A new customer has been added to the database',
         'added customer': customer,
