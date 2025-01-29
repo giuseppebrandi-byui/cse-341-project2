@@ -19,6 +19,7 @@ const getAll = async (req, res, next) => {
 }
 
 const getSingle = async (req, res, next) => { 
+  res.setHeader('Content-Type', 'application/json');
   if (!(req.params.id && req.params.id.length === 24)) { 
     next(createError(400, 'Please enter a valid id with a string of 24 hex characters!'));
     return;
@@ -31,7 +32,6 @@ const getSingle = async (req, res, next) => {
         next(createError(400, 'Sorry! No product with the entered id.'));
         return;
       }
-      res.setHeader('Content-Type', 'application/json');
       res.status(200).json(products[0]);
     });
   } catch (error) { 
@@ -50,6 +50,7 @@ const createProduct = async (req, res, next) => {
       rating: req.body.rating
     };
     const response = await mongodb.getDatabase().db().collection('products').insertOne(product);
+    res.setHeader('Content-Type', 'application/json');
     if (response.acknowledged) {
       res.status(202).json({
         'message: ': 'A new product was added successfully.',
@@ -65,6 +66,7 @@ const createProduct = async (req, res, next) => {
 };
 
 const updateProduct = async (req, res, next) => { 
+  res.setHeader('Content-Type', 'application/json');
   try {
     if (!(req.params.id && req.params.id.length === 24)) {
       next(createError(400, 'Please enter a valid id with a string of 24 hex characters!'));
@@ -95,6 +97,7 @@ const updateProduct = async (req, res, next) => {
 }
 
 const deleteProduct = async (req, res, next) => { 
+  res.setHeader('Content-Type', 'application/json');
   try {
     if (!(req.params.id && req.params.id.length === 24)) {
       next(createError(400, 'Please enter a valid id with a string of 24 hex characters!'));

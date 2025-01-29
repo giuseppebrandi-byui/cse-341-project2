@@ -8,10 +8,12 @@ const getAll = async (req, res, next) => {
     customers_result.toArray().then((customers) => {
       // If the function returns an empty array, return 404 status code
       if (customers.length === 0 || !customers) {
+        // #swagger.responses[400] = No customers found
         next(createError(400, 'No customers found'));
         return;
       }
       res.setHeader('Content-Type', 'application/json');
+      // #swagger.responses[200] = No customers found
       res.status(200).json(customers);
     });
   } catch (error) { 
@@ -42,7 +44,7 @@ const getSingle = async (req, res, next) => {
 }
 
 const createCustomer = async (req, res, next) => { 
-  res.setHeader('Content-Type', 'application/xml')
+  res.setHeader('Content-Type', 'application/json')
   /*  #swagger.tags = ['Customer']
       #swagger.description = 'Endpoint to add a Customer.' */
 
@@ -68,12 +70,13 @@ const createCustomer = async (req, res, next) => {
     };
     const response = await mongodb.getDatabase().db().collection('customers').insertOne(customer);
     if (response.acknowledged) {
-       // #swagger.responses[202] = { 'message': 'A new customer has been added to the database','added customer': 'customer' }
+      // #swagger.responses[202] = { 'message': 'A new customer has been added to the database','added customer': 'customer' }
       res.status(202).json({
         'message': 'A new customer has been added to the database',
         'added customer': customer,
        });
     } else {
+      // #swagger.responses[400] = { 'message': 'A new customer has been added to the database','added customer': 'customer' }
       next(createError(400, 'Some error occurred while creating the customer'));
       return;
     }
@@ -83,6 +86,7 @@ const createCustomer = async (req, res, next) => {
 }
 
 const updateCustomer = async (req, res, next) => {
+  res.setHeader('Content-Type', 'application/json')
   try {
     if (!(req.params.id && req.params.id.length === 24)) {
       next(createError(400, 'Please enter a valid id with a string of 24 hex characters!'));
@@ -118,6 +122,7 @@ const updateCustomer = async (req, res, next) => {
 }
 
 const deleteCustomer = async (req, res, next) => { 
+  res.setHeader('Content-Type', 'application/json')
   try {
     if (!(req.params.id && req.params.id.length === 24)) {
       next(createError(400, 'Please enter a valid id with a string of 24 hex characters!'));
