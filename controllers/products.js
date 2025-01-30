@@ -24,37 +24,6 @@ const getAll = async (req, res, next) => {
   }
 }
 
-const getSingle = async (req, res, next) => { 
-  res.setHeader('Content-Type', 'application/json');
-  if (!(req.params.id && req.params.id.length === 24)) {
-    // #swagger.responses[400] = 'Please enter a valid id with a string of 24 hex characters!'
-    next(createError(400, 'Please enter a valid id with a string of 24 hex characters!'));
-    return;
-  }
-  try {
-    const productId = ObjectId.createFromHexString(req.params.id);
-    /*  #swagger.tags = ['Product']
-        #swagger.schema: { "$ref": "#/definitions/Product" },
-        #swagger.description = 'Endpoint to get the specific product.'
-        */
-    const products_result = await mongodb.getDatabase().db().collection('products').find({_id: productId});
-    products_result.toArray().then((products) => {
-      if (products.length === 0 || !products) {
-        // #swagger.responses[404] = 'Sorry! No products with the entered id.'
-        next(createError(404, 'Sorry! No product with the entered id.'));
-        return;
-      }
-      /* #swagger.responses[200] = { 
-          schema: { "$ref": "#/definitions/Product" },
-          description: "Product registered successfully." } */
-      res.status(200).json(products[0]);
-    });
-  } catch (error) { 
-    // #swagger.responses[500] = 'Something went wrong. Try again later.
-    createError(500, 'Something went wrong. Try again later.');
-  }
-}
-
 const createProduct = async (req, res, next) => {
    res.setHeader('Content-Type', 'application/json')
   /*  #swagger.tags = ['Product']
@@ -91,7 +60,36 @@ const createProduct = async (req, res, next) => {
     // #swagger.responses[500] =  'Some error occurred while creating the product.Try again later.'
     next(createError(500, 'Some error occurred while creating the product. Try again later.'));
   }
-};
+}
+
+const getSingle = async (req, res, next) => {
+  res.setHeader('Content-Type', 'application/json');
+  if (!(req.params.id && req.params.id.length === 24)) {
+    // #swagger.responses[400] = 'Please enter a valid id with a string of 24 hex characters!'
+    next(createError(400, 'Please enter a valid id with a string of 24 hex characters!'));
+    return;
+  }
+  try {
+    const productId = ObjectId.createFromHexString(req.params.id);
+    /*  #swagger.tags = ['Product']
+        #swagger.schema: { "$ref": "#/definitions/Product" },
+        #swagger.description = 'Endpoint to get the specific product.'
+        */
+    const products_result = await mongodb.getDatabase().db().collection('products').find({ _id: productId });
+    products_result.toArray().then((products) => {
+      if (products.length === 0 || !products) {
+        // #swagger.responses[404] = 'Sorry! No products with the entered id.'
+        next(createError(404, 'Sorry! No product with the entered id.'));
+        return;
+      }
+      // #swagger.responses[200] = 'product found'
+      res.status(200).json(products[0]);
+    });
+  } catch (error) {
+    // #swagger.responses[500] = 'Something went wrong. Try again later.
+    createError(500, 'Something went wrong. Try again later.');
+  }
+}
 
 const updateProduct = async (req, res, next) => { 
   res.setHeader('Content-Type', 'application/json');

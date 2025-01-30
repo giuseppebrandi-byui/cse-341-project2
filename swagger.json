@@ -124,33 +124,11 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "Product information.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UpdateProduct"
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Product registered successfully.",
-            "schema": {
-              "$ref": "#/definitions/Product"
-            }
-          },
-          "201": {
-            "message: ": "The product has been deleted successfully.",
-            "Updated Product: ": "product",
-            "description": "Created"
-          },
-          "202": {
-            "message: ": "A new product has been added successfully.",
-            "added product: ": "product",
-            "description": "Accepted"
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
