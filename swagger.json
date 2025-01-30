@@ -7,6 +7,16 @@
   },
   "host": "cse-341-project2-6ng3.onrender.com",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "Product",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Customer",
+      "description": "Endpoints"
+    }
+  ],
   "schemes": [
     "https"
   ],
@@ -43,7 +53,10 @@
     },
     "/products/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to get all Product.",
         "produces": [
           "application/json"
         ],
@@ -53,6 +66,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -78,7 +94,7 @@
         "responses": {
           "202": {
             "description": "Accepted",
-            "message: ": "A new product was added successfully.",
+            "message: ": "A new product has been added successfully.",
             "added product: ": "product"
           },
           "400": {
@@ -95,26 +111,10 @@
     },
     "/products/{id}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": [
+          "Product"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "description": "",
+        "description": "Endpoint to get the specific product.",
         "produces": [
           "application/json"
         ],
@@ -126,47 +126,90 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Product information.",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "category": {
-                  "example": "any"
-                },
-                "image": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/UpdateProduct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "201": {
+            "message: ": "The product has been deleted successfully.",
+            "Updated Product: ": "product",
+            "description": "Created"
+          },
+          "202": {
+            "message: ": "A new product has been added successfully.",
+            "added product: ": "product",
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to update Product.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Product information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateProduct"
             }
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "message: ": "Your product has been updated successfully.",
+            "Updated Product: ": "product"
           },
           "400": {
             "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Product"
+        ],
+        "description": "Endpoint to delete all Product.",
         "produces": [
           "application/json"
         ],
@@ -180,17 +223,27 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "message: ": "The product has been deleted successfully."
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/customers/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint to get all Customer.",
         "produces": [
           "application/json"
         ],
@@ -200,6 +253,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -233,13 +289,19 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/customers/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint to get the specific customer.",
         "produces": [
           "application/json"
         ],
@@ -254,11 +316,23 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint to update Customer.",
         "produces": [
           "application/json"
         ],
@@ -270,50 +344,37 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Customer information.",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "age": {
-                  "example": "any"
-                },
-                "username": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "address": {
-                  "example": "any"
-                },
-                "phone": {
-                  "example": "any"
-                },
-                "occupation": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/UpdateCustomer"
             }
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "message: ": "Your customer has been updated successfully.",
+            "Updated Customer: ": "customer"
           },
           "400": {
             "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Customer"
+        ],
+        "description": "Endpoint to delete a Customer.",
         "produces": [
           "application/json"
         ],
@@ -327,10 +388,17 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "message: ": "The customer has been deleted successfully."
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -342,7 +410,7 @@
       "properties": {
         "name": {
           "type": "string",
-          "example": "Jhon Doe"
+          "example": "John Doe"
         },
         "age": {
           "type": "number",
@@ -388,7 +456,7 @@
       "properties": {
         "name": {
           "type": "string",
-          "example": "Jhon Doe"
+          "example": "John Doe"
         },
         "age": {
           "type": "number",
@@ -442,6 +510,52 @@
         "phone",
         "occupation"
       ]
+    },
+    "UpdateCustomer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "age": {
+          "type": "number",
+          "example": 29
+        },
+        "username": {
+          "type": "string",
+          "example": "johndoe@example.com"
+        },
+        "email": {
+          "type": "string",
+          "example": "johndoe@example.com"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string",
+              "example": "304 York Street"
+            },
+            "city": {
+              "type": "string",
+              "example": "New York"
+            },
+            "zip": {
+              "type": "string",
+              "example": "12345"
+            }
+          }
+        },
+        "phone": {
+          "type": "string",
+          "example": "55566677799900"
+        },
+        "occupation": {
+          "type": "string",
+          "example": "Front End Developer"
+        }
+      }
     },
     "Product": {
       "type": "object",
@@ -508,6 +622,35 @@
         "image",
         "rating"
       ]
+    },
+    "UpdateProduct": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Product Name"
+        },
+        "price": {
+          "type": "string",
+          "example": "10.55"
+        },
+        "description": {
+          "type": "string",
+          "example": "Product Description"
+        },
+        "category": {
+          "type": "string",
+          "example": "Specify a category"
+        },
+        "image": {
+          "type": "string",
+          "example": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+        },
+        "rating": {
+          "type": "string",
+          "example": "5"
+        }
+      }
     }
   }
 }
